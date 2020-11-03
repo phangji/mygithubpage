@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lessons learned</title>
+    <description>Software Engineer</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 03 Nov 2020 09:56:51 +0900</pubDate>
+    <lastBuildDate>Tue, 03 Nov 2020 09:56:51 +0900</lastBuildDate>
+    <generator>Jekyll v4.1.1</generator>
+    
+      <item>
+        <title>Error와 Logging에 관하여</title>
+        <description>&lt;ul&gt;
+  &lt;li&gt;유저의 잘못된 입력 등에 관한 처리는 error라고 생각하지 않았다.&lt;/li&gt;
+  &lt;li&gt;우리 RuntimeException을 상속하는 Invalid argument만 취급하는 Exception을 새로 정의해 handler에서 이것만 debug 레벨로 로깅하도록 했다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;아래 3가지 사항을 고려했었다.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;개발자가 에러가 아닌 것에 알람을 받는다는 것&lt;/li&gt;
+  &lt;li&gt;에러 갯수로 집계될 수 있다는 것&lt;/li&gt;
+  &lt;li&gt;유저가 잘못 입력한 건 우리 프로덕트의 에러가 아니라는 것&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그러나 팀원들과 이야기해보고 기존 방식을 유지하기로 했다.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;-&amp;gt; 에러 수집하는 프로젝트에서 에러 로그를 필터링할 수 있다.&lt;/li&gt;
+  &lt;li&gt;-&amp;gt; 카나리 배포에서 기존 에러율을 ‘상대적’으로 비교하기 때문에 절대적인 수치는 크게 중요하지 않다.&lt;/li&gt;
+  &lt;li&gt;-&amp;gt; 오히려 프론트의 UX가 악화되었거나 어떤 특정한 이유로 인해 유저의 입력이 잘못되었을 수 있고 이걸 에러로 수집 안하면 그 현상을 놓칠 수 있다.
+무엇보다도,&lt;/li&gt;
+  &lt;li&gt;같은 멤버가 시간이 지나서 또는 새로운 멤버가 로깅이나 exception을 처리하려고 할 때 다양한 exception을 사용한다는 인지를 하기 힘들다. 로그 레벨을 info, warn, error 섬세하게 신경쓰지 못할 수 있다. 어차피 로그 수집 시스템에서 필터링해 알람을 끌 수 있으니 심플하게 error로 남기는 것이 좋다.
+실제로 한 팀원이 다른 프로젝트에서 로그레벨을 섬세하게 나눴지만 시간이 지나자 다시 error만 사용하게 되었다고 한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;코드는 오늘의 나, 내일의 나, 지금의 동료, 아직 만나지 못한 미래의 동료들과 함께 작성하는 것이다.
+Simple is the best.
+고로 쿨 롤백해도 괜찮다 :)&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 02 Nov 2020 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2020/11/02/error-and-logging/</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/11/02/error-and-logging/</guid>
+        
+        <category>error</category>
+        
+        <category>exception</category>
+        
+        <category>logg</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
